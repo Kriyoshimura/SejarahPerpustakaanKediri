@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah Perpustakaan Umum Kota Kediri</title>
+    <style>
+        /* --- CSS: STYLING & ANIMASI --- */
+        :root {
+            --primary-color: #2c3e50; /* Biru Gelap */
+            --accent-color: #e67e22;  /* Oranye Emas */
+            --bg-color: #fdfbf7;      /* Putih Gading/Kertas */
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1507842217121-9e959235c9ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-top: 20px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        /* Timeline Container */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 40px 0;
+        }
+
+        /* Garis Vertikal Tengah */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        /* Container per Item */
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0; /* Hidden awal untuk animasi JS */
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sisi Kiri dan Kanan */
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        /* Lingkaran di Garis Tengah */
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--accent-color);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .right::after { left: -16px; }
+
+        /* Konten Box */
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .content h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .content img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            max-height: 200px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Animations Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsiveness Mobile */
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container::after { left: 15px; }
+            .left::after, .right::after { left: 15px; }
+            .right { left: 0%; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Perpustakaan Umum Kota Kediri</h1>
+        <p>Melestarikan Ilmu, Mencerdaskan Bangsa sejak Era Pemuda hingga Otonomi Daerah.</p>
+    </header>
+
+    <div class="timeline">
+        
+        <div class="container left">
+            <div class="content">
+                <span class="date">Awal Mula</span>
+                <h2>Taman Bacaan Pemuda</h2>
+                <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Buku Tua">
+                <p>Bermula dari taman bacaan yang dikelola perkumpulan pemuda Tionghoa di Jl. Brawijaya. Karena kesibukan pengurus, perkembangannya sempat terhambat.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <span class="date">1963</span>
+                <h2>Alih Kelola Pemerintah</h2>
+                <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Gedung Pemerintahan">
+                <p>Diserahkan kepada Walikota Kediri, Bapak Anwar Zainuddin. Resmi bernama <strong>Perpustakaan Umum</strong> di bawah Sub Bagian Sosial untuk dimanfaatkan masyarakat luas.</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <span class="date">1971</span>
+                <h2>Pindah ke Jalan Diponegoro</h2>
+                <img src="https://images.unsplash.com/photo-1526721940322-10fb6e3ae94a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Lokasi Baru">
+                <p>Perpustakaan dipindahkan ke Jl. Diponegoro No. 1 dan digabung dengan sanggar pramuka untuk menjangkau lebih banyak pemuda.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <span class="date">1995 - 1996</span>
+                <h2>Pemugaran & Graha Mastrip</h2>
+                <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Renovasi Gedung">
+                <p>Gedung dipugar dengan bantuan Mastrip. Setelah vakum sementara, perpustakaan dibuka kembali di gedung baru <strong>Graha Mastrip</strong> dan menjadi Unit Pelaksana Daerah (UPD).</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <span class="date">2001 - 2004</span>
+                <h2>Era Otonomi & Dinas Pendidikan</h2>
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Buku Perpustakaan">
+                <p>Bergabung dengan Inkoparta pada 2001. Kemudian pada 2004, masuk ke naungan <strong>Dinas Pendidikan Kota Kediri</strong> sebagai UPTD.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <span class="date">2007 - 2009</span>
+                <h2>Transformasi Kantor Arsip</h2>
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perpustakaan Modern">
+                <p>Dibentuk menjadi Kantor Arsip dan Perpustakaan, yang kemudian berganti nama menjadi <strong>Kantor Perpustakaan, Arsip, dan Dokumentasi Kota Kediri</strong>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Sumber Materi: <a href="http://perpustakaanumumkotakediri.blogspot.com/2015/06/sejarah-singkat-perpustakaan-umum-kota.html?m=1" target="_blank">Blog Perpustakaan Umum Kota Kediri</a></p>
+        <p>&copy; 2025 Dibuat dengan Bantuan Gemini AI</p>
+    </footer>
+
+    <script>
+        /* --- JAVASCRIPT: INTERAKTIVITAS SCROLL --- */
+        
+        // Fungsi untuk mengecek elemen yang masuk ke layar
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Animasi memicu ketika 10% elemen terlihat
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Targetkan semua container timeline
+        const boxes = document.querySelectorAll('.container');
+        boxes.forEach(box => {
+            observer.observe(box);
+        });
+    </script>
+</body>
+</html>
